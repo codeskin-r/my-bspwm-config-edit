@@ -38,8 +38,8 @@ NORMAL_BC="#286983"		# Normal border color
 FOCUSED_BC="#907aa9"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="14"
+term_font_name="Hurmit Nerd Font"
 
 # Picom options
 P_FADE="true"			# Fade true|false
@@ -106,5 +106,5 @@ geany_theme="z0mbi3-RosePineDawn"
 ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="$HOME/.config/bspwm/rices/aline/walls/wall-01.webp"
+DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/aline/walls/8SFY.jpg"
 ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"

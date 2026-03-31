@@ -38,8 +38,8 @@ NORMAL_BC="#45475A"		# Normal border color
 FOCUSED_BC="#94E2D5"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="15"
+term_font_name="GeistMono Nerd Font"
 
 # Picom options
 P_FADE="true"			# Fade true|false
@@ -106,5 +106,5 @@ geany_theme="z0mbi3-CatppuccinMocha"
 ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/daniela/walls/wallhaven-ym27xk_1920x1080.png"
-ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"
+DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/daniela/walls/wall-08.webp"
+ANIMATED_WALL="/home/codeskivv/.config/bspwm/rices/daniela/walls/grok_video_2026-03-24-18-24-13.mp4"

@@ -38,8 +38,8 @@ NORMAL_BC="#4A9801"		# Normal border color
 FOCUSED_BC="#76EA00"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="15"
+term_font_name="MonaspiceRn Nerd Font Propo"
 
 # Picom options
 P_FADE="false"			# Fade true|false

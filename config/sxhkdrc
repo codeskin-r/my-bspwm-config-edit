@@ -17,7 +17,7 @@ alt + F1
 # ----- Main Apps ----- #
 
 # Open Terminal (Normal & Floating)
-super + {_,alt + }Return
+super + {_,alt + } q 
     OpenApps --{terminal,floating}
 
 # App launcher

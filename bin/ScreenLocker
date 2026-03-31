@@ -20,12 +20,12 @@
 TEMP_IMAGE="/tmp/i3lock.jpg"
 
 # Colors
-bg=#14171c
-fg=#abb2bf
-ring=#14171c
-wrong=#be5046
-date=#abb2bf
-verify=#81ae5f
+bg=#2d353b
+fg=#d3c6aa
+ring=#2d353b
+wrong=#e67e80
+date=#d3c6aa
+verify=#a7c080
 
 # Get screen resolution dynamically
 get_screen_resolution() {

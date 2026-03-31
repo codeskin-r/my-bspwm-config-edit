@@ -1,142 +1,41 @@
 #!/bin/sh
-# =============================================================
-# Script Name: MonitorSetup
-# Description: Dynamic multi-monitor configuration for bspwm using xrandr
-# Features:
-#   - Auto-detect connected monitors (Up to 4 monitors)
-#   - Dynamic workspace assignment
-#   - Resolution/refresh rate detection
-#
-# Author: gh0stzk
-# Repo:   https://github.com/gh0stzk/dotfiles
-# Date:   24.04.2025
-#
-# Copyright (C) 2021-2025 gh0stzk <z0mbi3.zk@protonmail.com>
-# Licensed under GPL-3.0 license
-# =============================================================
 
-# xrandr cmd
+# Obtener estado actual
 XRANDR_OUTPUT=$(xrandr)
 
-# Remove disconnected monmitors
-xrandr | while read -r mon state _; do
-    [ "$state" = "disconnected" ] && xrandr --output "$mon" --off
+# Apagar monitores desconectados
+echo "$XRANDR_OUTPUT" | awk '/disconnected/ {print $1}' | while read -r mon; do
+    xrandr --output "$mon" --off
 done
 
-# Function to obtain monitor info (POSIX-compliant)
-get_monitor_info() {
-    monitor="$1"
+# Verificar si HDMI-1 está conectado
+HDMI_CONNECTED=$(echo "$XRANDR_OUTPUT" | grep "^HDMI-1 connected")
 
-    # Buscar si 1920x1080 existe en el monitor
-    if echo "$XRANDR_OUTPUT" | awk -v m="$monitor" '
-        $1 == m { found=1 }
-        found && /1920x1080/ { print "1920x1080 60.00"; exit }
-    '; then
-        return
-    fi
+# Verificar si eDP-1 está conectado
+EDP_CONNECTED=$(echo "$XRANDR_OUTPUT" | grep "^eDP-1 connected")
 
-    echo "$XRANDR_OUTPUT" | awk -v monitor="$monitor" '
-        $1 == monitor { getline; print $1, $2 }
-    ' | tr -d "*+"
-}
-# Get connected monitors using POSIX-compliant method
-set -- $(echo "$XRANDR_OUTPUT" | awk '$2 == "connected" {print $1}')
-NUM_MONITORS=$#
+# Configuración
+if [ -n "$EDP_CONNECTED" ] && [ -n "$HDMI_CONNECTED" ]; then
+    # Laptop + monitor externo
+    xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 \
+           --output HDMI-1 --mode 1920x1080 --rate 59.89 --right-of eDP-1
 
-# Main case for monitor configuration
-case $NUM_MONITORS in
-    1)
-        monitor_1="$1"
-        set -- $(get_monitor_info "$monitor_1")
-        mode_1="$1"
-        rate_1="$2"
+    bspc monitor eDP-1 -d 1 2 3 4
+    bspc monitor HDMI-1 -d 5 6 7 8
+    bspc wm -O eDP-1 HDMI-1
 
-        xrandr --output "$monitor_1" --primary --mode "$mode_1" --pos 0x0 --auto --rate "$rate_1"
-        bspc monitor "$monitor_1" -d 1 2 3 4 5 6
-        ;;
+elif [ -n "$EDP_CONNECTED" ]; then
+    # Solo laptop
+    xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0
 
-    2)
-        monitor_1="$1"
-        monitor_2="$2"
+    bspc monitor eDP-1 -d 1 2 3 4 5 6
 
-        set -- $(get_monitor_info "$monitor_1")
-        mode_1="$1"
-        rate_1="$2"
+elif [ -n "$HDMI_CONNECTED" ]; then
+    # Solo monitor externo
+    xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 59.89 --pos 0x0
 
-        set -- $(get_monitor_info "$monitor_2")
-        mode_2="$1"
-        rate_2="$2"
+    bspc monitor HDMI-1 -d 1 2 3 4 5 6
 
-        xrandr --output "$monitor_1" --primary --mode "$mode_1" --pos 0x0 --auto --rate "$rate_1" \
-               --output "$monitor_2" --mode "$mode_2" --right-of "$monitor_1" --auto --rate "$rate_2"
-
-        bspc monitor "$monitor_1" -d 1 2 3 4
-        bspc monitor "$monitor_2" -d 5 6 7 8
-        bspc wm -O "$monitor_1" "$monitor_2"
-        ;;
-
-    3)
-        monitor_1="$1"
-        monitor_2="$2"
-        monitor_3="$3"
-
-        set -- $(get_monitor_info "$monitor_1")
-        mode_1="$1"
-        rate_1="$2"
-
-        set -- $(get_monitor_info "$monitor_2")
-        mode_2="$1"
-        rate_2="$2"
-
-        set -- $(get_monitor_info "$monitor_3")
-        mode_3="$1"
-        rate_3="$2"
-
-        xrandr --output "$monitor_1" --primary --mode "$mode_1" --pos 0x0 --auto --rate "$rate_1" \
-               --output "$monitor_2" --mode "$mode_2" --left-of "$monitor_1" --auto --rate "$rate_2" \
-               --output "$monitor_3" --mode "$mode_3" --right-of "$monitor_1" --auto --rate "$rate_3"
-
-        bspc monitor "$monitor_1" -d 1 2 3
-        bspc monitor "$monitor_2" -d 4 5 6
-        bspc monitor "$monitor_3" -d 7 8 9
-        bspc wm -O "$monitor_1" "$monitor_2" "$monitor_3"
-        ;;
-
-    4)
-        monitor_1="$1"
-        monitor_2="$2"
-        monitor_3="$3"
-        monitor_4="$4"
-
-        set -- $(get_monitor_info "$monitor_1")
-        mode_1="$1"
-        rate_1="$2"
-
-        set -- $(get_monitor_info "$monitor_2")
-        mode_2="$1"
-        rate_2="$2"
-
-        set -- $(get_monitor_info "$monitor_3")
-        mode_3="$1"
-        rate_3="$2"
-
-        set -- $(get_monitor_info "$monitor_4")
-        mode_4="$1"
-        rate_4="$2"
-
-        xrandr --output "$monitor_1" --primary --mode "$mode_1" --pos 0x0 --auto --rate "$rate_1" \
-               --output "$monitor_2" --mode "$mode_2" --left-of "$monitor_1" --auto --rate "$rate_2" \
-               --output "$monitor_3" --mode "$mode_3" --right-of "$monitor_1" --auto --rate "$rate_3" \
-               --output "$monitor_4" --mode "$mode_4" --above "$monitor_1" --auto --rate "$rate_4"
-
-        bspc monitor "$monitor_1" -d 1 2 3
-        bspc monitor "$monitor_2" -d 4 5
-        bspc monitor "$monitor_3" -d 6 7
-        bspc monitor "$monitor_4" -d 8 9
-        bspc wm -O "$monitor_1" "$monitor_2" "$monitor_3" "$monitor_4"
-        ;;
-
-    *)
-        echo "Warning: Configuration not supported for more than 4 monitors"
-        ;;
-esac
+else
+    echo "No se detectaron monitores activos"
+fi

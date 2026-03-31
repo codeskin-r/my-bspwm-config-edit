@@ -20,7 +20,7 @@
 # =============================================================
 
 # ===== Configuration =====
-KEY="6706655eb21ffc23ea08cd9d04f81abe"
+KEY="10af8e6aaec53910a06aae4d91bd8a96"
 CITY="San Miguel de Tucuman, AR"  # Go to https://openweathermap.org/find to find your city/town
 UNITS="metric" # metric | imperial
 

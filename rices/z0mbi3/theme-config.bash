@@ -38,8 +38,8 @@ NORMAL_BC="#3d414f"		# Normal border color
 FOCUSED_BC="#93cee9"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="14"
+term_font_name="IosevkaTerm Nerd Font"
 
 # Picom options
 P_FADE="true"			# Fade true|false
@@ -103,8 +103,8 @@ geany_theme="z0mbi3-Decay"
 # - Default (Sets a specific image as wallpaper) *Default
 # - Animated (Set an animated wallpaper. "mp4, mkv, gif")
 # - Slideshow (Change randomly every 15 minutes your wallpaper from Walls rice directory)
-ENGINE="Default"
+ENGINE="Animated"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
 DEFAULT_WALL="$HOME/.config/bspwm/rices/z0mbi3/walls/wall-05.webp"
-ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"
+ANIMATED_WALL="/home/codeskivv/Descargas/grok_video_2026-03-24-19-16-31.mp4"

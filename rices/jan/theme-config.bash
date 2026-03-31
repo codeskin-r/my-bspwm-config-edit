@@ -38,8 +38,8 @@ NORMAL_BC="#926BCA"		# Normal border color
 FOCUSED_BC="#fb007a"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="16"
+term_font_name="IosevkaTerm Nerd Font Mono"
 
 # Picom options
 P_FADE="true"			# Fade true|false
@@ -103,8 +103,8 @@ geany_theme="z0mbi3-CyberPunk"
 # - Default (Sets a specific image as wallpaper) *Default
 # - Animated (Set an animated wallpaper. "mp4, mkv, gif")
 # - Slideshow (Change randomly every 15 minutes your wallpaper from Walls rice directory)
-ENGINE="Animated"
+ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
 DEFAULT_WALL="$HOME/.config/bspwm/rices/jan/walls/wall-01.webp"
-ANIMATED_WALL="/home/codeskivv/Descargas/minecraft-autumn-sunset-moewalls-com.mp4"
+ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"

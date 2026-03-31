@@ -106,5 +106,5 @@ geany_theme="z0mbi3-Monochromatic"
 ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/varinka/walls/wall-02.webp"
+DEFAULT_WALL="$HOME/.config/bspwm/rices/varinka/walls/wall-11.webp"
 ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"

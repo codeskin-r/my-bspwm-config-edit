@@ -38,8 +38,8 @@ NORMAL_BC="#16161C"		# Normal border color
 FOCUSED_BC="#b0a5ed"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="16"
+term_font_name="IosevkaTerm Nerd Font"
 
 # Picom options
 P_FADE="true"			# Fade true|false
@@ -106,5 +106,5 @@ geany_theme="z0mbi3-Andrea"
 ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="$HOME/.config/bspwm/rices/andrea/walls/wall-01.webp"
+DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/andrea/walls/wallpaper3.png"
 ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"

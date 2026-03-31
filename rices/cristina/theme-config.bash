@@ -38,8 +38,8 @@ NORMAL_BC="#9bced7"		# Normal border color
 FOCUSED_BC="#c3a5e6"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
-term_font_name="JetBrainsMono Nerd Font"
+term_font_size="16"
+term_font_name="Fantasque Sans Mono"
 
 # Picom options
 P_FADE="true"			# Fade true|false
@@ -103,8 +103,8 @@ geany_theme="z0mbi3-RosePineMoon"
 # - Default (Sets a specific image as wallpaper) *Default
 # - Animated (Set an animated wallpaper. "mp4, mkv, gif")
 # - Slideshow (Change randomly every 15 minutes your wallpaper from Walls rice directory)
-ENGINE="Animated"
+ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="$HOME/.config/bspwm/rices/cristina/walls/wall-01.webp"
-ANIMATED_WALL="/home/codeskivv/Descargas/minecraft-autumn-sunset-moewalls-com.mp4"
+DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/cristina/walls/a_cartoon_of_a_woman_sitting_in_a_chair_with_a_paddle.jpg"
+ANIMATED_WALL="/home/codeskivv/Descargas/grok_video_2026-03-24-19-08-25.mp4"

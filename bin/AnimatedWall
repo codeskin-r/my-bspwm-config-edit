@@ -12,56 +12,38 @@
 # Licensed under GPL-3.0 license
 # =============================================================
 
+#!/bin/bash
+
 start() {
     video_path="$1"
 
     case "$video_path" in
-        *.mp4|*.mkv|*.gif) ;;
+        *.mp4|*.mkv|*.gif|*.mov|*.webm) ;;
         *)
             echo "[-] The file does not have a valid video extension"
             exit 1
         ;;
     esac
 
-    # Get full geometry of each screen (ex: "1920x1080+1366+0")
+    # Obtenemos las pantallas
     SCREENS=$(xrandr | grep -Eo '[0-9]+x[0-9]+\+[0-9]+\+[0-9]+')
 
-    gcd() {
-        a="$1" b="$2"
-        while [ "$b" -ne 0 ]; do
-            temp="$b"
-            b=$((a % b))
-            a=$temp
-        done
-        echo "$a"
-    }
-
     for geometry in $SCREENS; do
-        # Extract resolution and coordinates
-        resolution=$(echo "$geometry" | cut -d'+' -f1)
-        width=$(echo "$resolution" | cut -d'x' -f1)
-        height=$(echo "$resolution" | cut -d'x' -f2)
-
-        # Calculate aspect ratio
-        g=$(gcd "$width" "$height")
-        aspect_width=$((width / g))
-        aspect_height=$((height / g))
-
-        case "${aspect_width}:${aspect_height}" in
-            "8:5") videoaspect="16:10" ;;
-            "4:3") videoaspect="4:3" ;;
-            "16:9") videoaspect="16:9" ;;
-            "21:9") videoaspect="21:9" ;;
-            *) videoaspect="${aspect_width}:${aspect_height}" ;;
-        esac
-
-        # INFO: for each screen, launch the video with the appropriate aspect ratio
+        # Lanzamos xwinwrap
+        # Eliminamos --video-aspect-override para evitar el estiramiento
+        # Usamos --video-unscaled=no para permitir que mpv lo ajuste al tamaño de xwinwrap
         xwinwrap -g "$geometry" -un -fdt -ni -b -nf \
             -- mpv --hwdec=auto -vo x11 --no-audio --no-border --no-config \
             --no-window-dragging --no-input-default-bindings --no-osd-bar \
             --no-sub --loop -wid WID \
-            --video-aspect-override="$videoaspect" --video-scale-x=1 --video-scale-y=1 \
+            --keepaspect=yes \
+            --video-unscaled=no \
+            --panscan=0 \
             "$video_path" > /dev/null 2>&1 &
+            
+        # NOTA SOBRE PANSCAN:
+        # --panscan=0 -> Mantiene el video íntegro con barras negras (Letterbox).
+        # --panscan=1 -> Hace zoom hasta llenar la pantalla (recorta bordes pero no estira).
     done
 }
 
@@ -71,8 +53,8 @@ stop() {
 
 print_help() {
     echo "Usage: AnimatedWall [--start] [--stop] video_path"
-    echo "    --start   Start playback of video file."
-    echo "    --stop    Stop active playback."
+    echo "    --start    Start playback of video file."
+    echo "    --stop     Stop active playback."
 }
 
 if [ "$#" -eq 0 ]; then
@@ -88,8 +70,8 @@ while [ "$#" -gt 0 ]; do
             shift
             ;;
         --stop)
-            shift
             stop
+            shift
             ;;
         *)
             echo "Unknown parameter: $1"

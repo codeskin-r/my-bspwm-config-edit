@@ -38,7 +38,7 @@ NORMAL_BC="#d3c6aa"		# Normal border color
 FOCUSED_BC="#a7c080"	# Focused border color
 
 # Terminal font & size
-term_font_size="10"
+term_font_size="14"
 term_font_name="JetBrainsMono Nerd Font"
 
 # Picom options
@@ -106,5 +106,5 @@ geany_theme="z0mbi3-EverForest"
 ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="$HOME/.config/bspwm/rices/brenda/walls/wall-02.webp"
+DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/brenda/walls/[100%]Anime Original by artist Tomoki Kurogi.jpg"
 ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"

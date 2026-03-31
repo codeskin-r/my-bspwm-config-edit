@@ -103,8 +103,8 @@ geany_theme="z0mbi3-Gruvbox"
 # - Default (Sets a specific image as wallpaper) *Default
 # - Animated (Set an animated wallpaper. "mp4, mkv, gif")
 # - Slideshow (Change randomly every 15 minutes your wallpaper from Walls rice directory)
-ENGINE="Animated"
+ENGINE="Default"
 
 CUSTOM_DIR="/path/to/your/wallpapers/directory"
-DEFAULT_WALL="/home/codeskivv/.config/bspwm/rices/silvia/walls/wall-09.webp"
-ANIMATED_WALL="/home/codeskivv/Descargas/minecraft-autumn-sunset-moewalls-com.mp4"
+DEFAULT_WALL="$HOME/.config/bspwm/rices/silvia/walls/wall-01.webp"
+ANIMATED_WALL="$HOME/.config/bspwm/config/assets/animated_wall.mp4"
